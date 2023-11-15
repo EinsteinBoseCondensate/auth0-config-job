@@ -1,0 +1,32 @@
+name: Build and execute ConfigServerJob console app
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_compress:
+    runs-on: ubuntu-latest
+    env:
+      AUTH0_SERVER_DOMAIN: dev-cocoe0b45mvat4al.us.auth0.com
+      AUTH0_CLIENT_ID: JqTJDChjt3HuqkhmrgZFqKIfVVtiltg1
+      AUTH0_CLIENT_SECRET: ${{ secrets.AUTH0_CLIENT_SECRET }}
+      CUSTOM_SIGNUP_FIELDS_ACTION_SECRETS_JWT_SIGNING_KEY_VALUE: ${{ secrets.CUSTOM_SIGNUP_FIELDS_ACTION_SECRETS_JWT_SIGNING_KEY_VALUE }}
+      CUSTOM_SIGNUP_FIELDS_ACTION_SECRETS_SITE_URL: https://165.232.34.229/authn-extension/
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v3.2.0
+      with:
+        dotnet-version: 7.0.x
+
+    - name: Build project
+      run: | 
+        cd ConsoleApp
+        dotnet build ConsoleApp.csproj --configuration Release
+
+    - name: Execute built files
+      run: |
+        cd ./bin/Release/net7.0
+        ./ConsoleApp ${{ env.AUTH0_SERVER_DOMAIN }} ${{ env.AUTH0_CLIENT_ID }} ${{ env.AUTH0_CLIENT_SECRET }} ${{ env.CUSTOM_SIGNUP_FIELDS_ACTION_SECRETS_JWT_SIGNING_KEY_VALUE }} ${{ env.CUSTOM_SIGNUP_FIELDS_ACTION_SECRETS_SITE_URL }}
