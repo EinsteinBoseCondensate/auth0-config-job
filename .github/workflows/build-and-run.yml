@@ -28,5 +28,5 @@ jobs:
 
     - name: Execute built files
       run: |
-        cd ./bin/Release/net7.0
+        cd ConsoleApp/bin/Release/net7.0
         ./ConsoleApp ${{ env.AUTH0_SERVER_DOMAIN }} ${{ env.AUTH0_CLIENT_ID }} ${{ env.AUTH0_CLIENT_SECRET }} ${{ env.CUSTOM_SIGNUP_FIELDS_ACTION_SECRETS_JWT_SIGNING_KEY_VALUE }} ${{ env.CUSTOM_SIGNUP_FIELDS_ACTION_SECRETS_SITE_URL }}
