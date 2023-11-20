@@ -13,7 +13,7 @@ jobs:
       AUTH0_CLIENT_ID: JqTJDChjt3HuqkhmrgZFqKIfVVtiltg1
       AUTH0_CLIENT_SECRET: ${{ secrets.AUTH0_CLIENT_SECRET }}
       CUSTOM_SIGNUP_FIELDS_ACTION_SECRETS_JWT_SIGNING_KEY_VALUE: ${{ secrets.CUSTOM_SIGNUP_FIELDS_ACTION_SECRETS_JWT_SIGNING_KEY_VALUE }}
-      CUSTOM_SIGNUP_FIELDS_ACTION_SECRETS_SITE_URL: https://165.232.34.229/authn-extension/
+      CUSTOM_SIGNUP_FIELDS_ACTION_SECRETS_SITE_URL: https://pulp-app.slev7n-playground.xyz/authn-extension/
     steps:
     - uses: actions/checkout@v3
     - name: Setup dotnet
